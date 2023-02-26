@@ -194,17 +194,30 @@
 // }
 // console.log(isPangram('Фабрикуймо гідність, лящім їжею, ґав хапаймо, з’єднавці чаш'));
 
-function isPangram(string) {
-    let abcStr = 'abcdefghijklmnopqrstuvwxyz',
-        setStr = Array.from(new Set(' .,!?' + string)).join('').toLowerCase();
-    setStr = setStr.substring(5, setStr.length);//прибрали можливі знаки в реченні
+// function isPangram(string) {
+//     let abcStr = 'abcdefghijklmnopqrstuvwxyz',
+//         setStr = Array.from(new Set(' .,!?' + string)).join('').toLowerCase();
+//     setStr = setStr.substring(5, setStr.length);//прибрали можливі знаки в реченні
     
-    if (setStr.length < 26)
-        return false;
-    for (let i = 0; i < setStr.length; i++){
-        abcStr = abcStr.replace(setStr[i], '');
-    }
-    if (abcStr) return false;
-    else return true;
+//     if (setStr.length < 26)
+//         return false;
+//     for (let i = 0; i < setStr.length; i++){
+//         abcStr = abcStr.replace(setStr[i], '');
+//     }
+//     if (abcStr) return false;
+//     else return true;
+// }
+// console.log(isPangram('The quick brown fox jumps over the lazy dog'));
+
+//считаем вложенные массивы
+function deepCount(a) {
+    let count = a.length;
+    for (let i = 0; i < a.length; i++) 
+        if (Array.isArray(a[i])) {
+            count += deepCount(a[i]);
+        }
+    return count;
+       
 }
-console.log(isPangram('The quick brown fox jumps over the lazy dog'));
+console.log(deepCount([1, 2, [3]]));
+console.log(deepCount([1, 2, [3, 4, [5]]]));
