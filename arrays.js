@@ -81,28 +81,28 @@
 
 // console.log([] + 1 + 2);
 
-const films = [
-    {
-        name: 'Titanic',
-        rating: 9
-    },
-    {
-        name: 'Die hard 5',
-        rating: 5
-    },
-    {
-        name: 'Matrix',
-        rating: 8
-    },
-    {
-        name: 'Some bad film',
-        rating: 4
-    }
-];
+// const films = [
+//     {
+//         name: 'Titanic',
+//         rating: 9
+//     },
+//     {
+//         name: 'Die hard 5',
+//         rating: 5
+//     },
+//     {
+//         name: 'Matrix',
+//         rating: 8
+//     },
+//     {
+//         name: 'Some bad film',
+//         rating: 4
+//     }
+// ];
 
-function showGoodFilms(arr) {
-    return arr.filter(film => film.rating >= 8)
-}
+// function showGoodFilms(arr) {
+//     return arr.filter(film => film.rating >= 8)
+// }
 
 
 // function showListOfFilms(arr) {
@@ -114,28 +114,48 @@ function showGoodFilms(arr) {
 //     }, '')
 // }
 
-function showListOfFilms(arr) {
-    return arr.reduce((resStr, current) => `${typeof (resStr) === 'object' ? resStr.name : resStr}, ${current.name}`)
-}
-console.log(showListOfFilms(films));
+// function showListOfFilms(arr) {
+//     return arr.reduce((resStr, current) => `${typeof (resStr) === 'object' ? resStr.name : resStr}, ${current.name}`)
+// }
+// console.log(showListOfFilms(films));
 
-function setFilmsIds(arr) {
-    return arr.map((film, i) => {
-        film['id'] = i + 1;
-        return film;
-    }
-    )
-}
+// function setFilmsIds(arr) {
+//     return arr.map((film, i) => {
+//         film['id'] = i + 1;
+//         return film;
+//     }
+//     )
+// }
 
 
-const tranformedArray = setFilmsIds(films);
+// const tranformedArray = setFilmsIds(films);
 
-function checkFilms(arr) {
-    return arr.every(film => Object.keys(film).includes('id'))
-}
-console.log(checkFilms(films));
+// function checkFilms(arr) {
+//     return arr.every(film => Object.keys(film).includes('id'))
+// }
+// console.log(checkFilms(films));
     
+const funds = [
+    {amount: -1400},
+    {amount: 2400},
+    {amount: -1000},
+    {amount: 500},
+    {amount: 10400},
+    {amount: -11400}
+];
 
+const getPositiveIncomeAmount = (data) => {
+    return data.filter(elem => elem.amount > 0)
+               .reduce((prev, curr) => (typeof(prev) === 'object' ? prev.amount : prev) + curr.amount)
+};
 
+const getTotalIncomeAmount = (data) => {
+    if (data.some(elem => elem.amount < 0))
+        return data.reduce((prev, curr) => (typeof (prev) === 'object' ? prev.amount : prev) + curr.amount);
+    else
+        getPositiveIncomeAmount(data);
+};
+
+console.log(getTotalIncomeAmount(funds));
 
 
